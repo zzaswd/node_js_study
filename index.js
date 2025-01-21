@@ -15,6 +15,10 @@ app.listen(3000)
 // * param => first(stw-cgi), second(test)
 // * query => ?action=view&msubmenu=continuous
 // * body => 
+app.get('/', function (req, res) {
+  res.send("Hello, I'm ksh");
+})
+
 app.get('/:first/:second', function (req, res) {
 	const { first } = req.params;
   const { second } = req.params;
