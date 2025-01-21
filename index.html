@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GET 요청 및 응답 로깅</title>
+</head>
+<body>
+    <h1>GET 요청 보내기</h1>
+    <input type="text" id="queryInput" placeholder="쿼리를 입력하세요">
+    <button onclick="sendRequest()">전송</button>
+    <output type="text" id="response"></output>
+    <script>
+        function sendRequest() {
+            // 사용자가 입력한 값을 가져옵니다.
+            const query = document.getElementById('queryInput').value;
+
+            // 특정 URL에 요청을 보냅니다.
+            const url = `http://localhost:3000/stw-cgi/image.cgi?${query}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                  try {
+                    const jsonData = JSON.parse(data)
+                    console.log(jsonData);
+                    document.getElementById('response').innerHTML = jsonData.ac 
+                  } catch (error) {
+                    console.log(data);
+                  }
+                    
+                })
+                .catch(error => {
+                    // 에러를 console에 출력합니다.
+                    console.error('요청 중 문제가 발생했습니다: ', error);
+                });
+        }
+    </script>
+</body>
+</html>
